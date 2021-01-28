@@ -2,21 +2,27 @@ import React from "react";
 
 class AddTask extends React.Component {
   state = {
-    newTask: "",
+    taskDescription: "",
+    dueDate: ""
   };
 
-  handleInput = (event) => {
+  handleInput = ({target: {value, id}}) => {
     this.setState((currentState) => {
-      return { newTask: event.target.value };
+      return { [id]: value };
+    }, () => {
+      console.log(this.state)
     });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const newTask = this.state.newTask;
+    const newTask = this.state;
     this.props.add(newTask);
     this.setState(() => {
-      return { newTask: "" };
+      return { 
+        taskDescription: "",
+        dueDate: ""
+      };
     });
   };
 
@@ -25,9 +31,16 @@ class AddTask extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>Add a new task: </label>
         <input
+          id="taskDescription"
           type="text"
           onChange={this.handleInput}
           value={this.state.newTask}
+        />
+        <label>Due: </label>
+        <input 
+          type="date" 
+          onChange={this.handleInput}
+          id="dueDate"
         />
         <button type="submit">Submit task</button>
       </form>

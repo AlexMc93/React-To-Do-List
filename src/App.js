@@ -18,14 +18,17 @@ class App extends React.Component {
   };
 
   clear = (itemArray) => {
+
+    console.log(itemArray, 'ITEM ARRAY')
     
     const clearArray = itemArray.map((item) => {
       return item.innerText.slice(0, -6)
     })
 
-    console.log(clearArray);
+    console.log(clearArray, 'CLEAR ARRAY')
 
     this.setState((currentState) => {
+      console.log(currentState.tasks, 'CURRENT STATE TASKS')
       const unfinishedTasks = [...currentState.tasks].filter((task) => {
         return !clearArray.includes(task)
       }) 

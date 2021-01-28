@@ -7,6 +7,7 @@ const ClearTasks = (props) => {
        const toDelete = taskArray.filter((task) => {
             return task.classList.value === "deleted"
        });
+       console.log(toDelete)
        props.toClear(toDelete)
     }
 

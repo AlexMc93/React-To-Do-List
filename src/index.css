@@ -15,3 +15,8 @@ code {
 .deleted {
   text-decoration: line-through;
 }
+
+input {
+  padding: 20px;
+  margin: 20px;
+}
