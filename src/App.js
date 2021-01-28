@@ -1,7 +1,8 @@
 import "./App.css";
 import React from "react";
 import AddTask from "./components/AddTask";
-import DeleteTask from "./components/DeleteTask";
+
+import List from "./components/list";
 
 class App extends React.Component {
   state = {
@@ -23,22 +24,8 @@ class App extends React.Component {
     return (
       <main>
         <h1>To-do List</h1>
-
         <AddTask add={this.addTask} />
-
-        <div>
-          <ul>
-            Task List
-            {this.state.tasks.map((task) => {
-              return (
-                <li key={task}>
-                  {task}
-                  <DeleteTask toDelete={task} />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <List tasks={this.state.tasks} />
       </main>
     );
   }
