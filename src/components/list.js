@@ -10,7 +10,7 @@ const List = (props) => {
         <br></br>
         {props.tasks.map((task) => {
           return (
-            <li key={task.taskDescription}>
+            <li key={task.taskDescription} className={task.toDelete ? console.log('true') : console.log('false')}>
               Task Description: {task.taskDescription}
               <br></br>
               Due Date: {task.dueDate}

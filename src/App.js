@@ -31,12 +31,32 @@ class App extends React.Component {
     });
   };
 
+  saveData = (allTasks) => {
+    localStorage.setItem('data', JSON.stringify(allTasks))
+  }
+
+  handleClick = () => {
+    const currentTasks = this.state;
+    this.saveData(currentTasks)
+  }
+
+  componentDidMount = () => {
+    const data = localStorage.getItem('data');
+    if (data) {
+      const state = JSON.parse(data);
+      console.dir(state.tasks);
+      console.log(state)
+      this.setState(state)
+    }
+  }
+
   render() {
     return (
       <main>
         <h1>To-do List</h1>
         <AddTask add={this.addTask} />
         <List tasks={this.state.tasks} clearFunc={this.clear} />
+        <button onClick={this.handleClick}>Save Tasks</button>
       </main>
     );
   }

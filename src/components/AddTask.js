@@ -3,7 +3,7 @@ import React from "react";
 class AddTask extends React.Component {
   state = {
     taskDescription: "",
-    dueDate: "",
+    dueDate: ""
   };
 
   handleInput = ({ target: { value, id } }) => {
@@ -18,8 +18,7 @@ class AddTask extends React.Component {
     this.props.add(newTask);
     this.setState(() => {
       return {
-        taskDescription: "",
-        dueDate: "",
+        taskDescription: ""
       };
     });
   };
@@ -32,11 +31,11 @@ class AddTask extends React.Component {
           id="taskDescription"
           type="text"
           onChange={this.handleInput}
-          value={this.state.newTask}
+          value={this.state.taskDescription}
         />
         <label>Due: </label>
         <input type="date" onChange={this.handleInput} id="dueDate" />
-        <button type="submit">Submit task</button>
+        <button>Submit Task</button>
       </form>
     );
   }

@@ -8,8 +8,8 @@ const ClearTasks = (props) => {
     });
     const toDelete = DeleteStrings.map((string) => {
       return {
-        taskDescription: string.innerText.slice(18, -27),
-        dueDate: string.innerText.slice(-16, -6),
+        taskDescription: string.innerText.slice(18, -29),
+        dueDate: string.innerText.slice(-18, -8),
       };
     });
     props.clear(toDelete);
