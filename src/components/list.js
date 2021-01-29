@@ -6,17 +6,22 @@ const List = (props) => {
     <div>
       <ul>
         Task List
+        <br></br>
+        <br></br>
         {props.tasks.map((task) => {
           return (
             <li key={task.taskDescription}>
-              Task Description:    {task.taskDescription}
-              <br></br> 
-              Due Date:    {task.dueDate}   
+              Task Description: {task.taskDescription}
+              <br></br>
+              Due Date: {task.dueDate}
               <DeleteTask toDelete={task} />
+              <br></br>
+              <br></br>
             </li>
           );
         })}
-        <ClearTasks toClear={props.clearFunc}/>
+        <br></br>
+        <ClearTasks clear={props.clearFunc} />
       </ul>
     </div>
   );
