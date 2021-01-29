@@ -31,24 +31,40 @@ class App extends React.Component {
     });
   };
 
+  sort = () => {
+    this.setState((currentState) => {
+      const tasksToOrder = currentState.tasks.map((task) => {
+        task.dueDate = new Date(task.dueDate);
+        return task;
+      });
+      const sortedTasks = tasksToOrder.sort((a, b) => {
+        return a.dueDate - b.dueDate;
+      });
+      const sortedTasksJson = sortedTasks.map((task) => {
+        task.dueDate = task.dueDate.toString();
+        return task;
+      });
+      return { tasks: sortedTasksJson };
+    });
+  };
+
   saveData = (allTasks) => {
-    localStorage.setItem('data', JSON.stringify(allTasks))
-  }
+    localStorage.setItem("data", JSON.stringify(allTasks));
+  };
 
   handleClick = () => {
     const currentTasks = this.state;
-    this.saveData(currentTasks)
-  }
+    this.saveData(currentTasks);
+  };
 
   componentDidMount = () => {
-    const data = localStorage.getItem('data');
+    const data = localStorage.getItem("data");
     if (data) {
       const state = JSON.parse(data);
-      console.dir(state.tasks);
-      console.log(state)
-      this.setState(state)
+      console.log(state);
+      this.setState(state);
     }
-  }
+  };
 
   render() {
     return (
@@ -57,6 +73,7 @@ class App extends React.Component {
         <AddTask add={this.addTask} />
         <List tasks={this.state.tasks} clearFunc={this.clear} />
         <button onClick={this.handleClick}>Save Tasks</button>
+        <button onClick={this.sort}>sort Tasks</button>
       </main>
     );
   }

@@ -3,7 +3,7 @@ import React from "react";
 class AddTask extends React.Component {
   state = {
     taskDescription: "",
-    dueDate: ""
+    dueDate: "",
   };
 
   handleInput = ({ target: { value, id } }) => {
@@ -18,7 +18,7 @@ class AddTask extends React.Component {
     this.props.add(newTask);
     this.setState(() => {
       return {
-        taskDescription: ""
+        taskDescription: "",
       };
     });
   };
