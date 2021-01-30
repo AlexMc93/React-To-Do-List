@@ -4,10 +4,11 @@ class AddTask extends React.Component {
   state = {
     taskDescription: "",
     dueDate: "",
+    isDeleted: false,
   };
 
   handleInput = ({ target: { value, id } }) => {
-    this.setState((currentState) => {
+    this.setState(() => {
       return { [id]: value };
     });
   };
@@ -15,10 +16,11 @@ class AddTask extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const newTask = this.state;
+    newTask.dueDate = new Date(newTask.dueDate).toString().slice(0,-34);
     this.props.add(newTask);
     this.setState(() => {
       return {
-        taskDescription: "",
+        taskDescription: ""
       };
     });
   };
@@ -34,7 +36,7 @@ class AddTask extends React.Component {
           value={this.state.taskDescription}
         />
         <label>Due: </label>
-        <input type="date" onChange={this.handleInput} id="dueDate" />
+        <input type="datetime-local" onChange={this.handleInput} id="dueDate" />
         <button>Submit Task</button>
       </form>
     );

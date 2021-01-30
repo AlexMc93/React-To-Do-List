@@ -1,29 +1,33 @@
-import DeleteTask from "./DeleteTask";
+import CompleteTask from "./CompleteTask";
 import ClearTasks from "./ClearTasks";
 
 const List = (props) => {
   return (
-    <div>
       <ul>
         Task List
         <br></br>
         <br></br>
-        {props.tasks.map((task) => {
-          return (
-            <li key={task.taskDescription} className={task.toDelete ? console.log('true') : console.log('false')}>
-              Task Description: {task.taskDescription}
-              <br></br>
-              Due Date: {task.dueDate}
-              <DeleteTask toDelete={task} />
-              <br></br>
-              <br></br>
-            </li>
-          );
-        })}
+
+        {
+          props.tasks.map((task) => {
+            return (
+              <li key={task.taskDescription} className={task.isDeleted ? "deleted" : ""}>
+                Task Description: {task.taskDescription}
+                <br></br>
+
+                Due Date: {task.dueDate}
+                <CompleteTask toDelete={task} />
+                <br></br>
+                <br></br>
+
+              </li>
+            );
+          })
+        }
         <br></br>
-        <ClearTasks clear={props.clearFunc} />
+
+        <ClearTasks toClear={props.clearFunc} />
       </ul>
-    </div>
   );
 };
 

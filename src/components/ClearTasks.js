@@ -1,22 +1,25 @@
 const ClearTasks = (props) => {
-  const filteringTasks = (event) => {
+  const handleSubmit = (event) => {
+
     const taskArray = [...event.target.parentNode.childNodes];
     taskArray.shift();
 
-    const DeleteStrings = taskArray.filter((task) => {
+    const taskStrings = taskArray.filter((task) => {
       return task.classList.value === "deleted";
     });
-    const toDelete = DeleteStrings.map((string) => {
+
+    const toDelete = taskStrings.map((string) => {
       return {
-        taskDescription: string.innerText.slice(18, -29),
-        dueDate: string.innerText.slice(-18, -8),
+        taskDescription: string.innerText.slice(18, -48),
+        dueDate: string.innerText.slice(-37, -16),
       };
     });
-    props.clear(toDelete);
+
+    props.toClear(toDelete);
   };
 
   return (
-    <button type="submit" onClick={filteringTasks}>
+    <button type="submit" onClick={handleSubmit}>
       Clear completed tasks
     </button>
   );

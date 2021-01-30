@@ -15,7 +15,7 @@ class App extends React.Component {
     });
   };
 
-  clear = (itemArray) => {
+  clearTasks = (itemArray) => {
     this.setState((currentState) => {
       const unfinishedTasks = [...currentState.tasks].filter((task) => {
         return (
@@ -31,7 +31,7 @@ class App extends React.Component {
     });
   };
 
-  sort = () => {
+  sortTasks = () => {
     this.setState((currentState) => {
       const tasksToOrder = currentState.tasks.map((task) => {
         task.dueDate = new Date(task.dueDate);
@@ -41,27 +41,22 @@ class App extends React.Component {
         return a.dueDate - b.dueDate;
       });
       const sortedTasksJson = sortedTasks.map((task) => {
-        task.dueDate = task.dueDate.toString();
+        task.dueDate = task.dueDate.toString().slice(0, -34);
         return task;
       });
       return { tasks: sortedTasksJson };
     });
   };
 
-  saveData = (allTasks) => {
-    localStorage.setItem("data", JSON.stringify(allTasks));
-  };
-
-  handleClick = () => {
+  saveData = () => {
     const currentTasks = this.state;
-    this.saveData(currentTasks);
+    localStorage.setItem("data", JSON.stringify(currentTasks));
   };
 
   componentDidMount = () => {
     const data = localStorage.getItem("data");
     if (data) {
       const state = JSON.parse(data);
-      console.log(state);
       this.setState(state);
     }
   };
@@ -69,11 +64,11 @@ class App extends React.Component {
   render() {
     return (
       <main>
-        <h1>To-do List</h1>
+        <h1>Alex's Epic Awesome To-do List</h1>
         <AddTask add={this.addTask} />
-        <List tasks={this.state.tasks} clearFunc={this.clear} />
-        <button onClick={this.handleClick}>Save Tasks</button>
-        <button onClick={this.sort}>sort Tasks</button>
+        <List tasks={this.state.tasks} clearFunc={this.clearTasks} />
+        <button onClick={this.saveData}>Save Tasks</button>
+        <button onClick={this.sortTasks}>Sort By Due Date</button>
       </main>
     );
   }

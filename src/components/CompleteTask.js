@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteTask = (props) => {
+const CompleteTask = (props) => {
   const lineThrough = (event) => {
     if (event.target.parentNode.classList.value === "") {
       props.toDelete.isDeleted = !props.toDelete.isDeleted
@@ -11,7 +11,7 @@ const DeleteTask = (props) => {
     }
   };
 
-  return <button onClick={lineThrough}>Delete</button>;
+  return <button onClick={lineThrough}>Task Completed</button>;
 };
 
-export default DeleteTask;
+export default CompleteTask;
